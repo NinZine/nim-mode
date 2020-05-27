@@ -183,7 +183,7 @@ to see full traceback:\n%s" port-str))
              ((not (eq 'run (process-status process)))
               (setq cont nil))
              (t
-              (incf cont)
+              (cl-incf cont)
               (when (< nimsuggest-accept-process-timeout-count cont)
                 (nimsuggest--set-state 'no-response file)
                 ;; timeout 15 seconds (100 * 150)
@@ -320,7 +320,7 @@ crash when some emacsclients open the same file."
                    ;; For bug #119, convert ":" to "꞉" (U+A789)
                    (concat "/"
                            (replace-regexp-in-string
-                            ":" (char-to-string #xA789)
+                            ":" "_" ;;(char-to-string #xA789)
                             buffer-file-name)))
                   (t ; for *nix system
                    buffer-file-name)))
